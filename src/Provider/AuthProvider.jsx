@@ -4,6 +4,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import app from "../firebase.config";
 
@@ -37,11 +38,17 @@ const logIn = (email, password)=>{
     };
   }, []);
 
+  const logOut = ()=>{
+    setLoading(true)
+    return signOut(auth)
+  }
+
   const authInfo = {
     users,
     loading,
     createUser,
-    logIn
+    logIn, 
+    logOut
   };
 
   return (
