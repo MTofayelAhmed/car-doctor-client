@@ -39,7 +39,7 @@ const CheckOut = () => {
 
         if (data.insertedId) {
           alert("service booked Successfully");
-        
+        form.reset()
         }
       });
   };

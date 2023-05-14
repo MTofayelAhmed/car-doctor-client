@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import img from '../../assets/images/login/login.svg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const SignUp = () => {
-
+const navigate = useNavigate()
   const {createUser}= useContext(AuthContext)
 
 const handleSignUp= event =>{
@@ -18,6 +18,8 @@ createUser(email, password)
 .then(result =>{
   const createdUser = result.user;
   console.log( createdUser)
+  navigate('/login')
+
 })
 
 .catch(error=>{
