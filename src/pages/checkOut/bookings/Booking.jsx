@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import BookingTable from "../../bookingTable/BookingTable";
+import { useNavigate } from "react-router-dom";
 
 const Booking = () => {
   const [bookings, setBookings] = useState([]);
   const { users } = useContext(AuthContext);
-
+const navigate = useNavigate()
   const url = `http://localhost:5000/bookings?email=${users?.email}`;
 
   useEffect(() => {
@@ -17,7 +18,13 @@ const Booking = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setBookings(data);
+        if(!data.error){
+          setBookings(data);
+        }
+        else{
+          navigate('/')
+        }
+       
       });
   }, []);
 

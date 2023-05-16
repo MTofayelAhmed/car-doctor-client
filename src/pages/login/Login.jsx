@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/images/login/login.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import GoogleSign from "../../shared/googleSignIn/GoogleSign";
 
 
 const Login = () => {
@@ -20,24 +21,10 @@ console.log(location)
       .then((result) => {
         const user = result.user;
         console.log(user)
-
-        const loggedUser = {
-          email: user.email
-        }
-        fetch('http://localhost:5000/jwt',{
-         method: 'POST',
-         headers:{
-          'content-type': 'application/json'
-         },
-         body: JSON.stringify(loggedUser) 
-        })
-        .then(res => res.json())
-        .then(data =>{ 
-          localStorage.setItem('car-access-token', data.token)
-          
         form.reset();
         navigate(from, {replace: true});
-          console.log(data)})
+
+      
          
 
 
@@ -102,9 +89,11 @@ console.log(location)
                 SignUp
               </Link>
             </p>
+            <GoogleSign></GoogleSign>
           </div>
         </div>
       </div>
+  
     </div>
   );
 };
