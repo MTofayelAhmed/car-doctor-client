@@ -22,17 +22,9 @@ console.log(location)
         const user = result.user;
         console.log(user)
         form.reset();
-        navigate(from, {replace: true});
+          navigate(from, {replace: true});
+        })
 
-      
-         
-
-
-
-
-
- 
-      })
       .catch((error) => {
         console.log(error.message);
       });
